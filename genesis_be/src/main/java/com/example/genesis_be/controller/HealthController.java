@@ -1,4 +1,4 @@
-package com.example.genesis_be;
+package com.example.genesis_be.controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
