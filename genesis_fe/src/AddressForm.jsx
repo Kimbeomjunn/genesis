@@ -46,7 +46,7 @@ function AddressForm() {
             const token = localStorage.getItem('token')
             // Day 2에서 로그인 시 저장해둔 토큰을 꺼내옴
 
-            const res = await fetch('http://localhost:8080/api/addresses', {
+            const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/addresses`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

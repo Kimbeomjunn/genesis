@@ -27,7 +27,7 @@ function AddressList() {
         // 로그인 안 되어 있으면 아예 요청 안 보냄
 
         try {
-            const res = await fetch('http://localhost:8080/api/addresses', {
+            const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/addresses`, {
                 headers: { Authorization: `Bearer ${token}` },
             })
             if (!res.ok) throw new Error('불러오기 실패')

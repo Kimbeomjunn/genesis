@@ -11,7 +11,7 @@ function Signup() {
     const handleSignup = async () => {
         // 회원가입 버튼을 눌렀을 때 실행될 함수 (async: 서버 응답을 "기다리는" 함수라는 표시)
         try {
-            const res = await fetch('http://localhost:8080/api/auth/signup', {
+            const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/auth/signup`, {
                 method: 'POST',
                 // POST 방식으로 요청 (데이터를 새로 만들 때 쓰는 방식)
                 headers: { 'Content-Type': 'application/json' },
