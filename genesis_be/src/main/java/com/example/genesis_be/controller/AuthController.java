@@ -17,9 +17,13 @@ import java.util.Map;
 @RequiredArgsConstructor
 // UserService를 자동으로 주입받기 위한 생성자를 Lombok이 자동 생성
 
-@CrossOrigin(origins = {"http://localhost:5173", "http://localhost:8081", "https://genesis-ie4awf5gl-bj-e691.vercel.app"})
-// HealthController와 마찬가지로 CORS 허용 설정
-
+@CrossOrigin(origins = {
+        "http://localhost:5173",
+        "http://localhost:8081",
+        "https://genesis-ie4awf5gl-bj-e691.vercel.app",
+        "https://baknu.com",
+        "https://www.baknu.com"
+})
 public class AuthController {
 
     private final UserService userService;

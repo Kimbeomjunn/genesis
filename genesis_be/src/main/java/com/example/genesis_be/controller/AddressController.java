@@ -12,7 +12,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/addresses")
 @RequiredArgsConstructor
-@CrossOrigin(origins = {"http://localhost:5173", "http://localhost:8081", "https://genesis-ie4awf5gl-bj-e691.vercel.app"})
+@CrossOrigin(origins = {
+        "http://localhost:5173",
+        "http://localhost:8081",
+        "https://genesis-ie4awf5gl-bj-e691.vercel.app",
+        "https://baknu.com",
+        "https://www.baknu.com"
+})
 public class AddressController {
 
     private final AddressService addressService;
