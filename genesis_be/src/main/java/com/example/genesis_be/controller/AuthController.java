@@ -20,7 +20,6 @@ import java.util.Map;
 @CrossOrigin(origins = {
         "http://localhost:5173",
         "http://localhost:8081",
-        "https://genesis-ie4awf5gl-bj-e691.vercel.app",
         "https://baknu.com",
         "https://www.baknu.com"
 })
