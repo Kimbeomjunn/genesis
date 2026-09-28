@@ -34,6 +34,7 @@ function AddressList() {
 
             const data = await res.json()
             setAddresses(data)
+
             // 응답받은 배열을 상태에 저장 → 화면이 자동으로 다시 그려짐
         } catch (err) {
             console.error(err)
@@ -44,8 +45,10 @@ function AddressList() {
         fetchAddresses()
         // 컴포넌트가 처음 화면에 나타날 때, 딱 한 번 목록을 불러옴
     }, [])
+    
 
     if (!isLoaded) return <p>지도 로딩 중...</p>
+
 
     return (
         <div>
