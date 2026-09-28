@@ -39,6 +39,8 @@ dependencies {
     runtimeOnly 'org.postgresql:postgresql'
     implementation 'com.bucket4j:bucket4j_jdk17-core:8.14.0'
 
+    implementation 'io.sentry:sentry-spring-boot-4-starter:8.44.1'
+
 
 
 }
