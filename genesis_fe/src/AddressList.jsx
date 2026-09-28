@@ -45,7 +45,7 @@ function AddressList() {
         fetchAddresses()
         // 컴포넌트가 처음 화면에 나타날 때, 딱 한 번 목록을 불러옴
     }, [])
-    
+
 
     if (!isLoaded) return <p>지도 로딩 중...</p>
 
