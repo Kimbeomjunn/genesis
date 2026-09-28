@@ -1,7 +1,7 @@
 package com.example.genesis_be.controller;
 
 import com.example.genesis_be.dto.AddressRequest;
-import com.example.genesis_be.entity.Address;
+import com.example.genesis_be.dto.AddressResponse;
 import com.example.genesis_be.service.AddressService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -15,7 +15,6 @@ import java.util.List;
 @CrossOrigin(origins = {
         "http://localhost:5173",
         "http://localhost:8081",
-
         "https://baknu.com",
         "https://www.baknu.com"
 })
@@ -24,20 +23,20 @@ public class AddressController {
     private final AddressService addressService;
 
     @PostMapping
-    public Address addAddress(@RequestBody AddressRequest request, Authentication authentication) {
-        // Authentication authentication ← 이게 핵심!
-        // JwtAuthFilter가 SecurityContextHolder에 심어둔 로그인 정보를
-        // Spring이 자동으로 이 매개변수에 꺼내서 넣어줌
-
+    public AddressResponse addAddress(@RequestBody AddressRequest request, Authentication authentication) {
         String username = authentication.getName();
-        // authentication 안에는 아까 필터에서 넣어준 username이 들어있음
-
-        return addressService.save(username, request.getFullAddress(), request.getLatitude(), request.getLongitude());
+        return new AddressResponse(
+                addressService.save(username, request.getFullAddress(), request.getLatitude(), request.getLongitude())
+        );
+        // 저장된 Address 엔티티를 그대로 반환하지 않고, AddressResponse로 감싸서 반환
     }
 
     @GetMapping
-    public List<Address> getMyAddresses(Authentication authentication) {
+    public List<AddressResponse> getMyAddresses(Authentication authentication) {
         String username = authentication.getName();
-        return addressService.getAddressesByUsername(username);
+        return addressService.getAddressesByUsername(username).stream()
+                .map(AddressResponse::new)
+                .toList();
+        // 엔티티 리스트를 하나씩 AddressResponse로 변환해서 리스트로 반환
     }
 }
