@@ -9,25 +9,24 @@ function Signup() {
     // 회원가입 성공/실패 메시지를 보여줄 상태
 
     const handleSignup = async () => {
-        // 회원가입 버튼을 눌렀을 때 실행될 함수 (async: 서버 응답을 "기다리는" 함수라는 표시)
         try {
             const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/auth/signup`, {
                 method: 'POST',
-                // POST 방식으로 요청 (데이터를 새로 만들 때 쓰는 방식)
                 headers: { 'Content-Type': 'application/json' },
-                // "내가 보내는 데이터는 JSON 형식이야"라고 서버에 알려줌
                 body: JSON.stringify({ username, password }),
-                // 입력받은 username, password를 JSON 문자열로 변환해서 요청 본문에 담음
             })
 
             if (!res.ok) {
-                // res.ok는 응답 상태코드가 200번대(성공)가 아니면 false
-                throw new Error('회원가입 실패')
+                const errorData = await res.json()
+                // 백엔드가 이제 { status, message } 형태로 정확한 에러를 주니까 그걸 읽어옴
+                throw new Error(errorData.message)
             }
 
             setMessage('회원가입 성공! 이제 로그인해주세요.')
         } catch (err) {
-            setMessage('회원가입 실패: 이미 존재하는 아이디일 수 있습니다.')
+            setMessage(err.message || '회원가입 실패')
+            // 이제 "이미 존재하는 아이디일 수 있습니다" 같은 추측이 아니라,
+            // 백엔드가 알려준 정확한 이유를 그대로 보여줌
         }
     }
 
